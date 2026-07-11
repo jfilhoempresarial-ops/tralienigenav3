@@ -1,0 +1,31 @@
+<div id="tela-loja" class="tela">
+  <div class="tela-header">
+    <button class="btn-voltar" onclick="APP.inicio()">← Voltar</button>
+    <div class="tela-titulo">🛒 Loja do Alienígena</div>
+    <a href="https://www.lojadoalienigena.com.br" target="_blank" style="font-size:11px;font-weight:700;color:#2d8c3e;text-decoration:none;white-space:nowrap">🌐 Abrir</a>
+  </div>
+  <!-- Banner -->
+  <div style="background:linear-gradient(160deg,#1a1a1a,#333);padding:12px 16px;display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:#fff">👽 Loja do Alienígena</div>
+      <div style="color:#aaa;font-size:11px">Roupas e acessórios para caminhoneiros</div>
+    </div>
+    <a href="https://www.lojadoalienigena.com.br" target="_blank" style="background:#f59e0b;border-radius:8px;color:#1a1a1a;padding:7px 12px;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap">Ver tudo →</a>
+  </div>
+  <!-- Categorias -->
+  <div style="background:#1a1a1a;padding:10px 16px;display:flex;gap:8px;overflow-x:auto">
+    <button class="loja-cat-btn on" onclick="APP.lojaFiltrar('todos',this)">🛒 Todos</button>
+    <button class="loja-cat-btn" onclick="APP.lojaFiltrar('masculino',this)">👕 Masculino</button>
+    <button class="loja-cat-btn" onclick="APP.lojaFiltrar('feminino',this)">👗 Feminino</button>
+    <button class="loja-cat-btn" onclick="APP.lojaFiltrar('bones',this)">🧢 Bonés</button>
+    <button class="loja-cat-btn" onclick="APP.lojaFiltrar('acessorios',this)">🎒 Acessórios</button>
+    <button class="loja-cat-btn" onclick="APP.lojaFiltrar('estetica',this)">✨ Estética</button>
+    <button class="loja-cat-btn" onclick="APP.lojaFiltrar('kits',this)">🎁 Kits</button>
+  </div>
+  <!-- Busca -->
+  <div style="padding:10px 16px;background:#f9f9f9;border-bottom:1px solid #eee">
+    <input class="form-input" id="loja-busca" placeholder="🔍 Buscar produto..." oninput="APP.lojaBuscar()" style="font-size:13px"/>
+  </div>
+  <!-- Grid -->
+  <div id="loja-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 16px 24px"></div>
+</div>

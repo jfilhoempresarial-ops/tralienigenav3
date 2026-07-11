@@ -1,0 +1,120 @@
+<div id="tela-cursos" class="tela">
+  <div class="tela-header">
+    <button class="btn-voltar" onclick="APP.inicio()">← Voltar</button>
+    <div class="tela-titulo">📚 Cursos</div>
+  </div>
+  <div style="background:linear-gradient(160deg,#1a3a1a,#2d8c3e);padding:16px">
+    <div style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:2px">Cursos para Motoristas</div>
+    <div style="color:#a8d5b0;font-size:12px">Capacitação e qualificação profissional</div>
+  </div>
+
+  <!-- SEST SENAT SECTION -->
+  <div style="background:#003087;padding:14px 16px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div style="background:#fff;border-radius:8px;padding:4px 8px;font-size:11px;font-weight:700;color:#003087">SEST SENAT</div>
+      <div style="color:#fff;font-size:13px;font-weight:700">Cursos gratuitos para caminhoneiros</div>
+    </div>
+    <div style="color:#aac4ff;font-size:11px;margin-bottom:12px;line-height:1.5">Trabalhadores do transporte têm acesso <strong style="color:#fff">100% gratuito</strong> aos cursos presenciais e online do SEST SENAT.</div>
+    <div style="display:flex;gap:8px">
+      <button onclick="window.open('https://www.sestsenat.org.br/cursos','_blank')" style="flex:1;background:#fff;border:none;border-radius:8px;color:#003087;padding:10px;font-size:12px;font-weight:700;cursor:pointer">🔍 Cursos Presenciais CE</button>
+      <button onclick="window.open('https://ead.sestsenat.org.br','_blank')" style="flex:1;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:8px;color:#fff;padding:10px;font-size:12px;font-weight:700;cursor:pointer">💻 Cursos Online</button>
+    </div>
+  </div>
+
+  <!-- Cursos fixos SEST SENAT -->
+  <div style="padding:12px 16px 0">
+    <div style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:700;color:#003087;margin-bottom:10px;text-transform:uppercase">📋 Principais cursos para caminhoneiros</div>
+    <div id="lista-cursos-sest">
+      <!-- Cards dos cursos SEST SENAT -->
+      <div class="curso-sest-card" onclick="window.open('https://www.sestsenat.org.br/cursos?q=MOPP','_blank')">
+        <div class="curso-sest-icon">☢️</div>
+        <div class="curso-sest-info">
+          <div class="curso-sest-nome">MOPP — Movimentação de Produtos Perigosos</div>
+          <div class="curso-sest-desc">Obrigatório para transporte de cargas perigosas. Renovação a cada 5 anos.</div>
+          <div class="curso-sest-tag">🎓 Gratuito para motoristas • Presencial</div>
+        </div>
+        <div class="curso-sest-seta">›</div>
+      </div>
+      <div class="curso-sest-card" onclick="window.open('https://www.sestsenat.org.br/cursos?q=direcao+defensiva','_blank')">
+        <div class="curso-sest-icon">🛡️</div>
+        <div class="curso-sest-info">
+          <div class="curso-sest-nome">Direção Defensiva</div>
+          <div class="curso-sest-desc">Técnicas para prevenir acidentes e reduzir riscos na estrada.</div>
+          <div class="curso-sest-tag">🎓 Gratuito para motoristas • Presencial/Online</div>
+        </div>
+        <div class="curso-sest-seta">›</div>
+      </div>
+      <div class="curso-sest-card" onclick="window.open('https://www.sestsenat.org.br/cursos?q=carga+indivisivel','_blank')">
+        <div class="curso-sest-icon">📏</div>
+        <div class="curso-sest-info">
+          <div class="curso-sest-nome">Transporte de Carga Indivisível</div>
+          <div class="curso-sest-desc">Para transporte de cargas especiais e superdimensionadas (AET).</div>
+          <div class="curso-sest-tag">🎓 Gratuito para motoristas • Presencial</div>
+        </div>
+        <div class="curso-sest-seta">›</div>
+      </div>
+      <div class="curso-sest-card" onclick="window.open('https://www.sestsenat.org.br/cursos?q=primeiros+socorros','_blank')">
+        <div class="curso-sest-icon">🩺</div>
+        <div class="curso-sest-info">
+          <div class="curso-sest-nome">Primeiros Socorros</div>
+          <div class="curso-sest-desc">Atendimento emergencial em acidentes de trânsito.</div>
+          <div class="curso-sest-tag">🎓 Gratuito para motoristas • Presencial/Online</div>
+        </div>
+        <div class="curso-sest-seta">›</div>
+      </div>
+      <div class="curso-sest-card" onclick="window.open('https://www.sestsenat.org.br/cursos?q=relacoes+humanas','_blank')">
+        <div class="curso-sest-icon">🤝</div>
+        <div class="curso-sest-info">
+          <div class="curso-sest-nome">Relações Humanas no Trabalho</div>
+          <div class="curso-sest-desc">Comunicação, liderança e trabalho em equipe para motoristas.</div>
+          <div class="curso-sest-tag">🎓 Gratuito para motoristas • Online</div>
+        </div>
+        <div class="curso-sest-seta">›</div>
+      </div>
+      <div class="curso-sest-card" onclick="window.open('https://www.sestsenat.org.br/cursos?q=legislacao+transporte','_blank')">
+        <div class="curso-sest-icon">📋</div>
+        <div class="curso-sest-info">
+          <div class="curso-sest-nome">Legislação do Transporte Rodoviário</div>
+          <div class="curso-sest-desc">CTB, RNTRC, jornada de trabalho e direitos do motorista.</div>
+          <div class="curso-sest-tag">🎓 Gratuito para motoristas • Online</div>
+        </div>
+        <div class="curso-sest-seta">›</div>
+      </div>
+      <div class="curso-sest-card" onclick="window.open('https://www.sestsenat.org.br/cursos?q=seguranca+veiculo','_blank')">
+        <div class="curso-sest-icon">🔧</div>
+        <div class="curso-sest-info">
+          <div class="curso-sest-nome">Segurança e Manutenção do Veículo</div>
+          <div class="curso-sest-desc">Inspeção preventiva, cuidados com o caminhão e economia de combustível.</div>
+          <div class="curso-sest-tag">🎓 Gratuito para motoristas • Online</div>
+        </div>
+        <div class="curso-sest-seta">›</div>
+      </div>
+      <div class="curso-sest-card" onclick="window.open('https://www.sestsenat.org.br/cursos?q=saude+motorista','_blank')">
+        <div class="curso-sest-icon">💪</div>
+        <div class="curso-sest-info">
+          <div class="curso-sest-nome">Saúde do Motorista Profissional</div>
+          <div class="curso-sest-desc">Ergonomia, alimentação saudável e prevenção de doenças ocupacionais.</div>
+          <div class="curso-sest-tag">🎓 Gratuito para motoristas • Online</div>
+        </div>
+        <div class="curso-sest-seta">›</div>
+      </div>
+    </div>
+    <!-- Unidade SEST SENAT Sobral -->
+    <div style="background:#f0f4ff;border:1px solid #c7d7f5;border-radius:10px;padding:12px;margin:12px 0">
+      <div style="font-size:12px;font-weight:700;color:#003087;margin-bottom:6px">📍 SEST SENAT — Sobral/CE</div>
+      <div style="font-size:11px;color:#555;line-height:1.6">Rua Cel. João Silvestre, 201 – Centro<br>Para se inscrever nos cursos presenciais, leve sua CNH e carteira de trabalho.</div>
+      <button onclick="window.open('https://www.sestsenat.org.br/onde-estamos','_blank')" style="background:#003087;border:none;border-radius:8px;color:#fff;padding:8px 14px;font-size:11px;font-weight:700;cursor:pointer;margin-top:8px">🗺️ Ver todas as unidades do CE</button>
+    </div>
+  </div>
+
+  <!-- Divisor -->
+  <div style="padding:0 16px">
+    <div style="display:flex;align-items:center;gap:8px;margin:8px 0 12px">
+      <div style="flex:1;height:1px;background:#ddd"></div>
+      <span style="font-size:11px;color:#aaa;font-weight:700">outros cursos cadastrados</span>
+      <div style="flex:1;height:1px;background:#ddd"></div>
+    </div>
+  </div>
+
+  <div style="padding:0 16px 20px"><div id="lista-cursos"><div class="loading">Carregando...</div></div></div>
+</div>

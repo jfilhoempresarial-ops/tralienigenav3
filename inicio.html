@@ -1,0 +1,59 @@
+<div id="tela-inicio" class="tela" style="display:block">
+  <div class="inicio-hero">
+    <!-- LETREIRO LUMINOSO -->
+    <div style="background:#000;overflow:hidden;white-space:nowrap;padding:7px 0;margin:-24px -16px 20px -16px;border-bottom:2px solid #f59e0b;border-top:2px solid #f59e0b">
+      <div class="marquee-track">
+        <span class="marquee-content">
+          🚛 Bem-vindo ao Tr.Alienigena — A Voz do Motorista! &nbsp;⭐&nbsp; Avalie os serviços que você já usou na estrada &nbsp;🔧&nbsp; Encontre mecânicos, borracharias e postos próximos de você &nbsp;💼&nbsp; Confira as vagas de emprego do SINE atualizadas diariamente &nbsp;🛒&nbsp; Visite a Loja do Alienígena — roupas e acessórios para caminhoneiros &nbsp;📅&nbsp; Fique por dentro dos eventos e encontros de motoristas &nbsp;🚛&nbsp; Cadastre-se em Motoristas Disponíveis e seja encontrado por empresas &nbsp;📚&nbsp; Invista na sua carreira — confira os cursos disponíveis &nbsp;👽&nbsp; Siga @tr.alienigena no Instagram e fique ligado nas novidades! &nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+        <span class="marquee-content" aria-hidden="true">
+          🚛 Bem-vindo ao Tr.Alienigena — A Voz do Motorista! &nbsp;⭐&nbsp; Avalie os serviços que você já usou na estrada &nbsp;🔧&nbsp; Encontre mecânicos, borracharias e postos próximos de você &nbsp;💼&nbsp; Confira as vagas de emprego do SINE atualizadas diariamente &nbsp;🛒&nbsp; Visite a Loja do Alienígena — roupas e acessórios para caminhoneiros &nbsp;📅&nbsp; Fique por dentro dos eventos e encontros de motoristas &nbsp;🚛&nbsp; Cadastre-se em Motoristas Disponíveis e seja encontrado por empresas &nbsp;📚&nbsp; Invista na sua carreira — confira os cursos disponíveis &nbsp;👽&nbsp; Siga @tr.alienigena no Instagram e fique ligado nas novidades! &nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+      </div>
+    </div>
+    <h1>🚛 O que você precisa hoje?</h1>
+    <p>Selecione uma opção abaixo</p>
+
+    <!-- 3 BOTÕES PRINCIPAIS -->
+    <div class="btns-principais">
+      <button class="btn-principal" onclick="APP.show('tela-busca')">
+        <div class="btn-principal-icon">🔍</div>
+        <div class="btn-principal-label">Sou Motorista</div>
+        <div class="btn-principal-sub">Preciso de um serviço</div>
+      </button>
+      <button class="btn-principal btn-sos" onclick="APP.sosMecanico()">
+        <div class="btn-principal-icon">🆘</div>
+        <div class="btn-principal-label">SOS Mecânico</div>
+        <div class="btn-principal-sub">Quebrei! Manda minha localização</div>
+      </button>
+      <button class="btn-principal btn-outros" onclick="APP.show('tela-outros-servicos')">
+        <div class="btn-principal-icon">☰</div>
+        <div class="btn-principal-label">Outros Serviços</div>
+        <div class="btn-principal-sub">Vagas, rádio, loja e mais</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- TOP 5 -->
+  <div class="top5-section">
+    <div class="top5-titulo">🚿 Top 5 Melhores Banheiros</div>
+    <div style="font-size:11px;color:#888;margin-bottom:8px">Avaliados por caminhoneiros que passaram por lá</div>
+    <div id="top5-banheiro"><div class="loading">Carregando...</div></div>
+    <div class="top5-titulo" style="margin-top:20px">🍽️ Top 5 Melhores Restaurantes</div>
+    <div style="font-size:11px;color:#888;margin-bottom:8px">Comida boa, preço justo e atendimento nota 10</div>
+    <div id="top5-restaurante"><div class="loading">Carregando...</div></div>
+    <div class="top5-titulo" style="margin-top:20px">🛏️ Top 5 Melhores Dormidas</div>
+    <div style="font-size:11px;color:#888;margin-bottom:8px">Seguro, limpo e com estacionamento para o caminhão</div>
+    <div id="top5-dormida"><div class="loading">Carregando...</div></div>
+  </div>
+
+  <div class="avs-recentes">
+    <h2>⭐ Avaliações Recentes</h2>
+    <div id="lista-avs-recentes"><div class="loading">Carregando...</div></div>
+  </div>
+
+  <div style="padding:0 16px 20px">
+    <h2 style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:10px">🆕 Cadastros Recentes</h2>
+    <div id="lista-cadastros-recentes"><div class="loading">Carregando...</div></div>
+  </div>
+</div>

@@ -1,0 +1,91 @@
+<div id="tela-motoristas" class="tela">
+  <div class="tela-header">
+    <button class="btn-voltar" onclick="APP.inicio()">← Voltar</button>
+    <div class="tela-titulo">🚛 Motoristas Disponíveis</div>
+  </div>
+  <div style="background:linear-gradient(160deg,#1a3a1a,#2d8c3e);padding:16px">
+    <div style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:2px">Motoristas Disponíveis</div>
+    <div style="color:#a8d5b0;font-size:12px">Motoristas disponíveis para contratação</div>
+  </div>
+  <div style="padding:14px 16px">
+    <button onclick="APP.abrirCadMot()" id="btn-abrir-cad-mot" style="background:linear-gradient(135deg,#2d8c3e,#1a5c26);border:none;border-radius:10px;color:#fff;padding:13px;font-size:14px;font-weight:700;cursor:pointer;width:100%;margin-bottom:8px">🚛 Quero me cadastrar</button>
+    <button onclick="window.open('https://wa.me/5588981363953?text=Olá! Quero me cadastrar no Me Contrata mas não tenho currículo. Pode me ajudar?','_blank')" style="background:#fff;border:2px solid #25d366;border-radius:10px;color:#25d366;padding:11px;font-size:13px;font-weight:700;cursor:pointer;width:100%;margin-bottom:14px">💬 Não tenho currículo — me ajude a fazer um</button>
+    <div id="cad-mot-form" style="display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:14px;margin-bottom:14px">
+      <div style="font-size:13px;font-weight:700;color:#2d8c3e;margin-bottom:8px;text-transform:uppercase">📋 Cadastro rápido</div>
+      <div style="background:#fff3e0;border:1px solid #ffcc80;border-radius:8px;padding:10px;margin-bottom:12px;font-size:12px;color:#e65100">⏱️ Seu cadastro ficará visível por <strong>7 dias</strong> e será removido automaticamente.</div>
+      <div class="form-group">
+        <label class="form-label">📄 CURRÍCULO EM PDF * <span style="color:#dc2626">(obrigatório)</span></label>
+        <div class="foto-upload-area" onclick="document.getElementById('input-curriculo').click()" style="border-color:#2d8c3e;background:#fff;border-width:2px">
+          <input type="file" id="input-curriculo" accept=".pdf,application/pdf" style="display:none" onchange="APP.selecionarCurriculo(event)"/>
+          <div style="font-size:36px;margin-bottom:6px">📄</div>
+          <div style="font-size:14px;font-weight:700;color:#2d8c3e">Toque aqui para enviar seu currículo</div>
+          <div style="font-size:11px;color:#888;margin-top:4px">Somente PDF • A IA lê e preenche os campos</div>
+        </div>
+        <div id="curriculo-status" style="font-size:12px;color:#2d8c3e;margin-top:8px;display:none;text-align:center;font-weight:700;padding:8px;background:#f0fdf4;border-radius:8px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin:14px 0">
+        <div style="flex:1;height:1px;background:#ccc"></div>
+        <span style="font-size:11px;color:#999;font-weight:700">ou preencha manualmente</span>
+        <div style="flex:1;height:1px;background:#ccc"></div>
+      </div>
+      <div class="form-group"><label class="form-label">SEU NOME COMPLETO *</label><input class="form-input" id="mot-nome" placeholder="Nome completo"/></div>
+      <div class="form-group"><label class="form-label">CATEGORIA DA CNH *</label>
+        <select class="form-input" id="mot-cnh">
+          <option value="">Selecione...</option>
+          <option value="C">C — Caminhão</option>
+          <option value="D">D — Ônibus/Van</option>
+          <option value="E">E — Carreta/Bitrem</option>
+          <option value="C+D">C e D</option>
+          <option value="C+E">C e E (Carreteiro)</option>
+          <option value="D+E">D e E</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">TIPOS DE VEÍCULO COM EXPERIÊNCIA * <span style="font-weight:400;color:#aaa;text-transform:none">(selecione todos que já dirigiu)</span></label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+          <div style="grid-column:1/-1;font-size:12px;font-weight:700;color:#2d8c3e">PESADOS</div>
+          <button type="button" class="mot-veiculo-tag" data-veiculo="Bitrem" onclick="this.classList.toggle('selected')">Bitrem</button>
+          <button type="button" class="mot-veiculo-tag" data-veiculo="Carreta" onclick="this.classList.toggle('selected')">Carreta</button>
+          <button type="button" class="mot-veiculo-tag" data-veiculo="Carreta 4º Eixo" onclick="this.classList.toggle('selected')">Carreta 4º Eixo</button>
+          <button type="button" class="mot-veiculo-tag" data-veiculo="Carreta LS" onclick="this.classList.toggle('selected')">Carreta LS</button>
+          <button type="button" class="mot-veiculo-tag" data-veiculo="Rodotrem" onclick="this.classList.toggle('selected')">Rodotrem</button>
+          <button type="button" class="mot-veiculo-tag" data-veiculo="Vanderléia" onclick="this.classList.toggle('selected')">Vanderléia</button>
+          <div style="grid-column:1/-1;font-size:12px;font-weight:700;color:#2d8c3e;margin-top:8px">MÉDIOS</div>
+          <button type="button" class="mot-veiculo-tag" data-veiculo="Bitruck" onclick="this.classList.toggle('selected')">Bitruck</button>
+          <button type="button" class="mot-veiculo-tag" data-veiculo="Truck" onclick="this.classList.toggle('selected')">Truck</button>
+          <div style="grid-column:1/-1;font-size:12px;font-weight:700;color:#2d8c3e;margin-top:8px">LEVES</div>
+          <button type="button" class="mot-veiculo-tag" data-veiculo="3/4" onclick="this.classList.toggle('selected')">3/4</button>
+          <button type="button" class="mot-veiculo-tag" data-veiculo="Fiorino" onclick="this.classList.toggle('selected')">Fiorino</button>
+          <button type="button" class="mot-veiculo-tag" data-veiculo="Toco" onclick="this.classList.toggle('selected')">Toco</button>
+          <button type="button" class="mot-veiculo-tag" data-veiculo="VLC" onclick="this.classList.toggle('selected')">VLC</button>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label">CIDADE / ESTADO *</label><input class="form-input" id="mot-cidade" placeholder="Ex: Sobral — CE"/></div>
+      <div class="form-group"><label class="form-label">ANOS DE EXPERIÊNCIA</label><input class="form-input" id="mot-exp" type="number" min="0" max="70" placeholder="Ex: 10" style="width:100%"/></div>
+      <div class="form-group"><label class="form-label">WHATSAPP *</label><input class="form-input" id="mot-wpp" placeholder="(88) 99999-9999" type="tel"/></div>
+      <div class="form-group">
+        <label class="form-label">CURSOS E CERTIFICAÇÕES <span style="font-weight:400;color:#aaa;text-transform:none">(opcional — marque os que possui)</span></label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px">
+          <label class="mot-tipo-label"><input type="checkbox" value="MOPP" name="mot-curso-check" onchange="this.closest('label').classList.toggle('checked',this.checked)"> ☢️ MOPP</label>
+          <label class="mot-tipo-label"><input type="checkbox" value="Direção Defensiva" name="mot-curso-check" onchange="this.closest('label').classList.toggle('checked',this.checked)"> 🛡️ Dir. Defensiva</label>
+          <label class="mot-tipo-label"><input type="checkbox" value="Carga Indivisível" name="mot-curso-check" onchange="this.closest('label').classList.toggle('checked',this.checked)"> 📏 Carga Indivisível</label>
+          <label class="mot-tipo-label"><input type="checkbox" value="Guincho/Munck" name="mot-curso-check" onchange="this.closest('label').classList.toggle('checked',this.checked)"> 🏗️ Guincho/Munck</label>
+          <label class="mot-tipo-label"><input type="checkbox" value="NR-11" name="mot-curso-check" onchange="this.closest('label').classList.toggle('checked',this.checked)"> 📋 NR-11</label>
+          <label class="mot-tipo-label"><input type="checkbox" value="NR-12" name="mot-curso-check" onchange="this.closest('label').classList.toggle('checked',this.checked)"> 📋 NR-12</label>
+          <label class="mot-tipo-label"><input type="checkbox" value="Primeiros Socorros" name="mot-curso-check" onchange="this.closest('label').classList.toggle('checked',this.checked)"> 🩺 Primeiros Socorros</label>
+          <label class="mot-tipo-label"><input type="checkbox" value="Prevenção de Roubo" name="mot-curso-check" onchange="this.closest('label').classList.toggle('checked',this.checked)"> 🔒 Prev. Roubo</label>
+          <label class="mot-tipo-label"><input type="checkbox" value="Transporte de Frigorífico" name="mot-curso-check" onchange="this.closest('label').classList.toggle('checked',this.checked)"> ❄️ Frigorífico</label>
+          <label class="mot-tipo-label"><input type="checkbox" value="Transporte de Tanque" name="mot-curso-check" onchange="this.closest('label').classList.toggle('checked',this.checked)"> 🛢️ Tanque</label>
+          <label class="mot-tipo-label"><input type="checkbox" value="Rastreamento/Telemetria" name="mot-curso-check" onchange="this.closest('label').classList.toggle('checked',this.checked)"> 📡 Rastreamento</label>
+          <label class="mot-tipo-label"><input type="checkbox" value="Balança Fiscal" name="mot-curso-check" onchange="this.closest('label').classList.toggle('checked',this.checked)"> ⚖️ Balança Fiscal</label>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label">OBSERVAÇÕES (opcional)</label><textarea class="form-input" id="mot-obs" placeholder="Disponibilidade, rotas preferidas..."></textarea></div>
+      <button onclick="APP.salvarMotorista()" style="background:linear-gradient(135deg,#2d8c3e,#1a5c26);border:none;border-radius:10px;color:#fff;padding:13px;font-size:14px;font-weight:700;cursor:pointer;width:100%">✅ Publicar disponibilidade</button>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <input class="form-input" id="mot-filtro" placeholder="🔍 Filtrar por nome, CNH, cidade..." oninput="APP.filtrarMotoristas()" style="flex:1;min-width:0"/>
+    </div>
+    <div id="lista-motoristas"><div class="loading">Carregando...</div></div>
+  </div>
+</div>

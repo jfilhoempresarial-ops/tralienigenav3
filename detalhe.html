@@ -1,0 +1,19 @@
+<div id="tela-detalhe" class="tela">
+  <div class="tela-header">
+    <button class="btn-voltar" id="btn-voltar-det" onclick="APP.show('tela-resultados')">← Voltar</button>
+    <div class="tela-titulo">Detalhes</div>
+  </div>
+  <div id="mapa-detalhe"></div>
+  <div class="detalhe-body">
+    <div class="det-nome" id="det-nome"></div>
+    <div id="det-tipo" style="margin-bottom:8px"></div>
+    <div id="det-servicos" style="margin-bottom:10px"></div>
+    <div id="det-galeria" style="display:none;margin-bottom:12px"></div>
+    <div class="det-info-box" id="det-info"></div>
+    <button class="btn-wpp-g" id="btn-wpp-g" style="display:none">💬 CHAMAR NO WHATSAPP</button>
+    <button class="btn-rota-g" id="btn-rota-g">🗺️ IR ATÉ O LOCAL</button>
+    <button class="btn-av-g" onclick="APP.avaliarAtual()">⭐ AVALIAR ESTE SERVIÇO</button>
+    <div class="avs-titulo">💬 Avaliações</div>
+    <div id="lista-avs-det"><div class="loading">Carregando...</div></div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div id="tela-noticias" class="tela">
+  <div class="tela-header">
+    <button class="btn-voltar" onclick="APP.inicio()">← Voltar</button>
+    <div class="tela-titulo">📰 Notícias</div>
+    <button onclick="APP.carregarNoticias()" style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:12px;font-weight:700;color:#2d8c3e">🔄</button>
+  </div>
+  <div style="background:linear-gradient(160deg,#1a1a2e,#16213e);padding:14px 16px">
+    <div style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:2px">📰 Notícias do Caminhoneiro</div>
+    <div style="color:#a8b8d8;font-size:12px">Frete • Diesel • Legislação • Pedágio • ANTT</div>
+  </div>
+  <!-- Filtros de tema -->
+  <div style="padding:10px 16px;background:#fff;border-bottom:1px solid #eee;display:flex;gap:8px;overflow-x:auto">
+    <button class="noticia-filtro on" id="nf-todos" onclick="APP.filtrarNoticias('todos')">📰 Todas</button>
+    <button class="noticia-filtro" id="nf-frete" onclick="APP.filtrarNoticias('frete')">💰 Frete</button>
+    <button class="noticia-filtro" id="nf-diesel" onclick="APP.filtrarNoticias('diesel')">⛽ Diesel</button>
+    <button class="noticia-filtro" id="nf-lei" onclick="APP.filtrarNoticias('lei')">📋 Leis</button>
+    <button class="noticia-filtro" id="nf-pedagio" onclick="APP.filtrarNoticias('pedagio')">🛣️ Pedágio</button>
+    <button class="noticia-filtro" id="nf-antt" onclick="APP.filtrarNoticias('antt')">🏛️ ANTT</button>
+  </div>
+  <div id="lista-noticias" style="padding:14px 16px"><div class="loading">Carregando notícias...</div></div>
+</div>

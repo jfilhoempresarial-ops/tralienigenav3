@@ -1,0 +1,33 @@
+<div id="tela-relacao" class="tela">
+  <div class="tela-header">
+    <button class="btn-voltar" onclick="APP.show('tela-busca')">← Voltar</button>
+    <div class="tela-titulo">📋 Relação Completa</div>
+  </div>
+  <div style="padding:14px 16px">
+    <div style="display:flex;gap:8px;margin-bottom:10px">
+      <input class="form-input" id="rel-filtro" placeholder="🔍 Nome, tipo ou cidade..." oninput="APP.filtrarRel()" style="flex:1"/>
+      <select class="form-input" id="rel-tipo" onchange="APP.filtrarRel()" style="max-width:130px">
+        <option value="">Todos</option>
+        <option value="mecanico">🔩 Mecânico</option>
+        <option value="borracharia">🔧 Borracharia</option>
+        <option value="posto">⛽ Combustível</option>
+        <option value="guindaste">🏗️ Guincho</option>
+        <option value="eletricista">⚡ Elétrica</option>
+        <option value="pecas">🏪 Autopeças</option>
+        <option value="funilaria">🚗 Funilaria</option>
+        <option value="lavajato">🚿 Lava-Jato</option><option value="lavanderia">👕 Lavanderia</option>
+        <option value="restaurante">🍽️ Restaurante</option>
+        <option value="pousada">🛏️ Pousada</option>
+        <option value="farmacia">💊 Farmácia</option>
+        <option value="tacografo">📟 Tacógrafo</option>
+        <option value="toxicologico">🧪 Toxicológico</option>
+        <option value="chapa">💪 Chapa</option>
+        <option value="outros">📦 Outros</option>
+        <option value="financiamento">💰 Financiamento</option>
+        <option value="saude">🏥 Saúde</option>
+      </select>
+    </div>
+    <div id="rel-count" style="font-size:11px;color:#aaa;margin-bottom:10px"></div>
+    <div id="lista-relacao"><div class="loading">Carregando...</div></div>
+  </div>
+</div>

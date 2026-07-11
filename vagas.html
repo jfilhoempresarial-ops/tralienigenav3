@@ -1,0 +1,25 @@
+<div id="tela-vagas" class="tela">
+  <div class="tela-header">
+    <button class="btn-voltar" onclick="APP.inicio()">← Voltar</button>
+    <div class="tela-titulo">💼 Vagas para Motoristas</div>
+  </div>
+  <div class="hero-grad"><h2>Vagas para Motoristas do SINE</h2><p>Vagas para Motoristas próximas a você — atualizadas diariamente</p></div>
+  <div style="padding:14px 16px">
+    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:12px;margin-bottom:12px">
+      <div style="font-size:12px;color:#2d8c3e;font-weight:700;margin-bottom:4px">📅 Atualizado em: <span id="vagas-data-hoje"></span></div>
+      <div style="font-size:13px;font-weight:700;color:#1a1a1a" id="vagas-total-msg">Carregando vagas...</div>
+      <div style="height:1px;background:#bbf7d0;margin:10px 0"></div>
+      <div style="font-size:11px;color:#555;line-height:1.6">
+        📌 <strong>Para se candidatar:</strong> dirija-se ao <strong>SINE ou DT da sua cidade</strong> com sua <strong>Carteira de Trabalho</strong> e documentação pessoal. O nome da empresa contratante é informado no momento do atendimento.
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:10px;align-items:center">
+      <input class="form-input" id="vagas-filtro" placeholder="🔍 Filtrar por cargo ou cidade..." oninput="APP.filtrarVagas()" style="flex:1"/>
+      <button onclick="APP.carregarVagas()" style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:8px 12px;cursor:pointer;font-size:12px;font-weight:700;color:#2d8c3e;white-space:nowrap">🔄</button>
+    </div>
+    <button onclick="APP.captarVagasIDT()" style="background:linear-gradient(135deg,#2d8c3e,#1a5c26);border:none;border-radius:10px;color:#fff;padding:11px;font-size:13px;font-weight:700;cursor:pointer;width:100%;margin-bottom:10px">🌐 Buscar vagas do SINE agora</button>
+    <div id="vagas-idt-status-pub" style="display:none;font-size:12px;font-weight:700;margin-bottom:10px;text-align:center;padding:8px;border-radius:8px"></div>
+    <div id="vagas-distancia" style="font-size:11px;color:#2d8c3e;font-weight:700;margin-bottom:8px"></div>
+    <div id="lista-vagas"><div class="loading">Carregando vagas...</div></div>
+  </div>
+</div>

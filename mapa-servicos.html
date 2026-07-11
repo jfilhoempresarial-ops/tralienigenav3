@@ -1,0 +1,19 @@
+<div id="tela-mapa-servicos" class="tela">
+  <div class="tela-header">
+    <button class="btn-voltar" onclick="APP.inicio()">← Voltar</button>
+    <div class="tela-titulo">🗺️ Mapa de Serviços</div>
+  </div>
+  <div style="background:linear-gradient(160deg,#1a3a1a,#2d8c3e);padding:12px 16px">
+    <div style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:#fff">Serviços no Brasil</div>
+    <div style="color:#a8d5b0;font-size:12px" id="mapa-srv-count">Carregando...</div>
+  </div>
+  <div style="padding:10px 16px;background:#fff;border-bottom:1px solid #eee;display:flex;gap:8px;overflow-x:auto">
+    <button class="serv-mapa-btn on" id="smb-todos" onclick="APP.filtrarMapaSrv('todos')">🌐 Todos</button>
+    <button class="serv-mapa-btn" id="smb-mecanico" onclick="APP.filtrarMapaSrv('mecanico')">🔩</button>
+    <button class="serv-mapa-btn" id="smb-borracharia" onclick="APP.filtrarMapaSrv('borracharia')">🔧</button>
+    <button class="serv-mapa-btn" id="smb-posto" onclick="APP.filtrarMapaSrv('posto')">⛽</button>
+    <button class="serv-mapa-btn" id="smb-restaurante" onclick="APP.filtrarMapaSrv('restaurante')">🍽️</button>
+    <button class="serv-mapa-btn" id="smb-pousada" onclick="APP.filtrarMapaSrv('pousada')">🛏️</button>
+  </div>
+  <div id="mapa-servicos-full" style="height:calc(100vh - 200px);width:100%"></div>
+</div>

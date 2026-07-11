@@ -1,0 +1,107 @@
+<div id="tela-cadastro" class="tela">
+  <div class="tela-header">
+    <button class="btn-voltar" onclick="APP.inicio()">← Voltar</button>
+    <div class="tela-titulo">🏪 Cadastro de Prestador</div>
+  </div>
+  <div class="hero-grad"><h2>Cadastre seu serviço</h2><p>Apareça para motoristas gratuitamente</p></div>
+  <div class="form-body">
+    <div class="alert-ok" id="cad-ok">✅ Prestador cadastrado com sucesso! Em breve você aparecerá nas buscas.</div>
+    <div class="form-group">
+      <label class="form-label">BUSCAR SE JÁ EXISTE SEU CADASTRO</label>
+      <div style="position:relative">
+        <input class="form-input" id="cad-busca" placeholder="Digite o nome do seu estabelecimento..." oninput="APP.buscarExistente()" autocomplete="off"/>
+        <div class="bp-sug" id="cad-sug"></div>
+      </div>
+      <div style="font-size:11px;color:#aaa;margin-top:3px">Se já existir, você se vincula. Se não, criamos um novo.</div>
+    </div>
+    <div id="form-novo">
+      <div class="form-group">
+        <label class="form-label">NOME DO ESTABELECIMENTO *</label>
+        <input class="form-input" id="cad-nome" placeholder="Ex: Oficina do Marquinhos"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">TIPO PRINCIPAL *</label>
+        <select class="form-input" id="cad-tipo">
+          <option value="">Selecione...</option>
+          <option value="mecanico">🔩 Mecânico</option>
+          <option value="borracharia">🔧 Borracharia</option>
+          <option value="posto">⛽ Combustível / Posto</option>
+          <option value="guindaste">🏗️ Guincho / Guindaste</option>
+          <option value="eletricista">⚡ Elétrica Veicular</option>
+          <option value="pecas">🏪 Autopeças</option>
+          <option value="funilaria">🚗 Funilaria / Pintura</option>
+          <option value="lavajato">🚿 Lava-Jato</option><option value="lavanderia">👕 Lavanderia</option>
+          <option value="restaurante">🍽️ Restaurante</option>
+          <option value="pousada">🛏️ Pousada / Dormida</option>
+          <option value="farmacia">💊 Farmácia</option>
+          <option value="tacografo">📟 Tacógrafo</option>
+          <option value="toxicologico">🧪 Exame Toxicológico</option>
+          <option value="polimento">✨ Polimento</option>
+          <option value="chapa">💪 Chapa / Ajudante</option>
+          <option value="outros">📦 Outros</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">OUTROS SERVIÇOS QUE VOCÊ OFERECE (selecione todos)</label>
+        <div class="tags-grid" id="cad-tags-grid"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">DESCRIÇÃO * <span style="font-weight:400;color:#aaa;text-transform:none">(usada na busca por palavras-chave)</span></label>
+        <textarea class="form-input" id="cad-desc" placeholder="Descreva o que você faz: marcas, serviços, diferenciais. Ex: mecânico Volvo e Scania, câmbio, freio, suspensão..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">WHATSAPP * <span style="font-weight:400;color:#dc2626;font-size:10px;text-transform:none">obrigatório</span></label>
+        <input class="form-input" id="cad-wpp" placeholder="(88) 99999-9999" type="tel"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">INSTAGRAM (opcional)</label>
+        <input class="form-input" id="cad-ig" placeholder="@nomedoperfil"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">ENDEREÇO * <span style="font-weight:400;color:#dc2626;font-size:10px;text-transform:none">obrigatório</span></label>
+        <input class="form-input" id="cad-end" placeholder="Rua, número, cidade — UF" oninput="APP.geocode()"/>
+        <button type="button" onclick="APP.gps('cadastro')" style="margin-top:6px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:7px 12px;cursor:pointer;font-size:12px;font-weight:700;color:#2d8c3e;width:100%">📡 Usar minha localização atual</button>
+        <div class="gps-status" id="gps-cad"></div>
+        <div id="mapa-cadastro"></div>
+        <input type="hidden" id="cad-lat"/><input type="hidden" id="cad-lng"/>
+      </div>
+      <div class="form-group form-row2">
+        <div><label class="form-label">ABRE ÀS</label><input class="form-input" id="cad-abre" type="time"/></div>
+        <div><label class="form-label">FECHA ÀS</label><input class="form-input" id="cad-fecha" type="time"/></div>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:13px;color:#555;cursor:pointer">
+        <input type="checkbox" id="cad-24h" style="accent-color:#2d8c3e;width:16px;height:16px"> Funciona 24 horas
+      </label>
+      <!-- DIAS DE FUNCIONAMENTO -->
+      <div class="form-group">
+        <label class="form-label">DIAS DE FUNCIONAMENTO</label>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+          <label id="label-seg-sab" style="display:flex;align-items:center;gap:10px;background:#f5f5f5;border:2px solid #e0e0e0;border-radius:10px;padding:10px 12px;cursor:pointer;font-size:13px;font-weight:600;transition:all .15s;user-select:none">
+            <input type="checkbox" id="cad-dias-seg-sab" style="accent-color:#2d8c3e;width:17px;height:17px;flex-shrink:0" onchange="APP.toggleDias('seg-sab')">
+            📅 Segunda a Sábado
+          </label>
+          <label id="label-dom-fer" style="display:flex;align-items:center;gap:10px;background:#f5f5f5;border:2px solid #e0e0e0;border-radius:10px;padding:10px 12px;cursor:pointer;font-size:13px;font-weight:600;transition:all .15s;user-select:none">
+            <input type="checkbox" id="cad-dias-dom-fer" style="accent-color:#2d8c3e;width:17px;height:17px;flex-shrink:0" onchange="APP.toggleDias('dom-fer')">
+            🌟 Domingos e Feriados
+          </label>
+          <label id="label-todos-dias" style="display:flex;align-items:center;gap:10px;background:#f5f5f5;border:2px solid #e0e0e0;border-radius:10px;padding:10px 12px;cursor:pointer;font-size:13px;font-weight:600;transition:all .15s;user-select:none">
+            <input type="checkbox" id="cad-dias-todos" style="accent-color:#2d8c3e;width:17px;height:17px;flex-shrink:0" onchange="APP.toggleDias('todos')">
+            🗓️ Todos os dias
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">FOTOS DO LOCAL (até 5 fotos)</label>
+        <div class="foto-upload-area" onclick="document.getElementById('input-fotos-cad').click()">
+          <input type="file" id="input-fotos-cad" accept="image/*" multiple onchange="APP.previsualizarFotos(event)"/>
+          <div style="font-size:28px;margin-bottom:6px">📷</div>
+          <div style="font-size:13px;font-weight:700;color:#555">Toque para adicionar fotos</div>
+          <div style="font-size:11px;color:#aaa;margin-top:3px">Fachada, área interna, estacionamento...</div>
+        </div>
+        <div class="fotos-preview" id="fotos-preview-cad"></div>
+        <div id="fotos-status" style="font-size:11px;color:#2d8c3e;margin-top:4px;display:none"></div>
+      </div>
+      <button class="btn-submit" id="btn-cad" onclick="APP.cadastrar()">✅ CADASTRAR MEU SERVIÇO</button>
+    </div>
+  </div>
+</div>

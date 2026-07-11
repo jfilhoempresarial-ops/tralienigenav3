@@ -1,0 +1,130 @@
+<div id="tela-admin" class="tela">
+  <div class="tela-header">
+    <button class="btn-voltar" onclick="APP.inicio()">← Voltar</button>
+    <div class="tela-titulo">🔐 Admin</div>
+  </div>
+  <div id="admin-login" style="padding:20px">
+    <div style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;margin-bottom:14px">Área Restrita</div>
+    <div class="form-group"><label class="form-label">SENHA</label><input class="form-input" id="admin-senha" type="password" placeholder="Digite a senha"/></div>
+    <button class="btn-submit" onclick="APP.adminLogin()">ENTRAR</button>
+    <div id="admin-erro" style="display:none;color:#dc2626;font-size:13px;margin-top:8px;text-align:center">❌ Senha incorreta</div>
+  </div>
+  <div id="admin-painel" style="display:none">
+    <div class="admin-body">
+      <div style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;margin-bottom:14px">📊 Painel Admin</div>
+      <div class="admin-card">
+        <div class="admin-card-t">🏪 Prestadores <span id="adm-tot-p" style="font-weight:400;color:#aaa;font-size:12px"></span></div>
+        <div id="adm-lista-p"><div class="loading">Carregando...</div></div>
+      </div>
+      <div class="admin-card">
+        <div class="admin-card-t">⭐ Avaliações <span id="adm-tot-a" style="font-weight:400;color:#aaa;font-size:12px"></span></div>
+        <div id="adm-lista-a"><div class="loading">Carregando...</div></div>
+      </div>
+      <!-- GESTÃO DE VAGAS -->
+      <div class="admin-card">
+        <div class="admin-card-t">💼 Vagas SINE <span id="adm-tot-vagas" style="font-weight:400;color:#aaa;font-size:12px"></span></div>
+        <div style="background:#f9fbe7;border-radius:10px;padding:12px;margin-bottom:12px;border:1px solid #e8f5e9">
+          <!-- Botão captura automática IDT -->
+          <div style="font-size:12px;font-weight:700;color:#2d8c3e;margin-bottom:6px">🌐 Captura automática do SINE/IDT</div>
+          <div style="font-size:11px;color:#666;margin-bottom:8px;line-height:1.5">Busca e filtra automaticamente vagas de transporte do site idt.org.br — atualizado 2x por dia.</div>
+          <button onclick="APP.captarVagasIDT()" style="background:linear-gradient(135deg,#2d8c3e,#1a5c26);border:none;border-radius:8px;color:#fff;padding:10px;font-size:13px;font-weight:700;cursor:pointer;width:100%;margin-bottom:8px">🔄 Captar vagas do SINE agora</button>
+          <div id="vagas-idt-status" style="display:none;font-size:12px;font-weight:700;margin-bottom:8px;text-align:center;padding:8px;border-radius:8px;background:#f0fdf4;color:#2d8c3e"></div>
+          <!-- Divisor -->
+          <div style="display:flex;align-items:center;gap:8px;margin:10px 0">
+            <div style="flex:1;height:1px;background:#ccc"></div>
+            <span style="font-size:10px;color:#aaa;font-weight:700">ou envie manualmente</span>
+            <div style="flex:1;height:1px;background:#ccc"></div>
+          </div>
+          <div style="font-size:11px;color:#666;margin-bottom:8px">Colunas esperadas: <strong>Cidade, Função, Total</strong></div>
+          <div class="foto-upload-area" onclick="document.getElementById('input-vagas-csv').click()" style="border-color:#2d8c3e;background:#fff;border-width:2px;padding:12px">
+            <input type="file" id="input-vagas-csv" accept=".csv,text/csv" style="display:none" onchange="APP.uploadVagasCSV(event)"/>
+            <div style="font-size:24px;margin-bottom:4px">📂</div>
+            <div style="font-size:12px;font-weight:700;color:#2d8c3e">Toque para enviar CSV</div>
+          </div>
+          <div id="vagas-upload-status" style="display:none;font-size:12px;font-weight:700;margin-top:8px;text-align:center;padding:8px;border-radius:8px"></div>
+        </div>
+        <div id="adm-lista-vagas" style="max-height:300px;overflow-y:auto"><div class="loading">Carregando...</div></div>
+      </div>
+      <div class="admin-card">
+        <div class="admin-card-t">📅 Eventos <span id="adm-tot-ev" style="font-weight:400;color:#aaa;font-size:12px"></span></div>
+        <div style="background:#f9fbe7;border-radius:10px;padding:12px;margin-bottom:12px;border:1px solid #e8f5e9">
+          <div id="ev-form-titulo" style="font-size:12px;font-weight:700;color:#2d8c3e;margin-bottom:10px">➕ Novo Evento</div>
+          <input type="hidden" id="ev-id"/>
+          <div class="form-group"><label class="form-label">TÍTULO *</label><input class="form-input" id="ev-titulo" placeholder="Nome do evento"/></div>
+          <div class="form-group"><label class="form-label">DATA *</label><input class="form-input" id="ev-data" type="date"/></div>
+          <div class="form-group"><label class="form-label">HORA</label><input class="form-input" id="ev-hora" type="time"/></div>
+          <div class="form-group"><label class="form-label">DESCRIÇÃO</label><textarea class="form-input" id="ev-desc" placeholder="Descrição..."></textarea></div>
+          <div class="form-group">
+            <label class="form-label">ENDEREÇO / LOCAL</label>
+            <div style="display:flex;gap:8px">
+              <input class="form-input" id="ev-end" placeholder="Ex: Posto Gatão, Sobral — CE" style="flex:1"/>
+              <button onclick="APP.evBuscarLocal()" style="background:#2d8c3e;border:none;border-radius:8px;color:#fff;padding:8px 10px;cursor:pointer;font-size:14px;flex-shrink:0" title="Buscar no mapa">📍</button>
+            </div>
+            <div id="ev-loc-status" style="display:none;font-size:11px;color:#2d8c3e;font-weight:700;margin-top:4px"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">BANNER DO EVENTO</label>
+            <div class="foto-upload-area" onclick="document.getElementById('input-ev-img').click()" style="border-color:#2d8c3e;background:#fff;border-width:2px;padding:14px">
+              <input type="file" id="input-ev-img" accept="image/*" style="display:none" onchange="APP.uploadBannerEvento(event)"/>
+              <div style="font-size:28px;margin-bottom:4px">🖼️</div>
+              <div style="font-size:13px;font-weight:700;color:#2d8c3e">Toque para subir o banner</div>
+              <div style="font-size:11px;color:#aaa;margin-top:2px">Recomendado: 1080×1350px</div>
+            </div>
+            <div id="ev-img-status" style="display:none;font-size:12px;font-weight:700;color:#2d8c3e;margin-top:6px;text-align:center;padding:8px;background:#f0fdf4;border-radius:8px"></div>
+            <input type="hidden" id="ev-img"/>
+            <div id="ev-img-preview" style="display:none;margin-top:8px;border-radius:8px;overflow:hidden">
+              <img id="ev-img-preview-img" src="" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block"/>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">INSTAGRAM</label><input class="form-input" id="ev-ig" placeholder="@perfil"/></div>
+          <div class="form-group"><label class="form-label">WHATSAPP</label><input class="form-input" id="ev-wpp" placeholder="(88) 99999-9999" type="tel"/></div>
+          <!-- FORMULÁRIO DE INSCRIÇÃO -->
+          <div class="form-group" style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:12px">
+            <label class="form-label" style="color:#166534">📋 FORMULÁRIO DE INSCRIÇÃO</label>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+              <label style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#1a1a1a;cursor:pointer">
+                <input type="checkbox" id="ev-tem-form" style="width:18px;height:18px;accent-color:#2d8c3e" onchange="document.getElementById('ev-form-wpp-box').style.display=this.checked?'block':'none'"/>
+                Habilitar inscrição para este evento
+              </label>
+            </div>
+            <div id="ev-form-wpp-box" style="display:none">
+              <div style="font-size:11px;color:#555;margin-bottom:6px;line-height:1.5">As inscrições chegam via WhatsApp. Informe o número que vai receber:</div>
+              <input class="form-input" id="ev-form-wpp" placeholder="WhatsApp para receber inscrições (88) 99999-9999" type="tel"/>
+            </div>
+          </div>
+          <div class="form-row2" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div><label class="form-label">LATITUDE</label><input class="form-input" id="ev-lat" placeholder="-3.68..." type="number" step="any"/></div>
+            <div><label class="form-label">LONGITUDE</label><input class="form-input" id="ev-lng" placeholder="-40.34..." type="number" step="any"/></div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button onclick="APP.salvarEvento()" class="btn-submit" style="flex:1">📅 PUBLICAR EVENTO</button>
+            <button id="ev-btn-cancelar" onclick="APP.evCancelarEdicao()" style="display:none;background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;color:#dc2626;padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer">✕ Cancelar</button>
+          </div>
+          <div id="ev-ok" style="display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px;color:#166534;font-size:13px;font-weight:700;text-align:center;margin-top:8px">✅ Evento salvo!</div>
+        </div>
+        <div id="adm-lista-ev"><div class="loading">Carregando...</div></div>
+      </div>
+      <div class="admin-card">
+        <div class="admin-card-t">📚 Cursos <span id="adm-tot-cur" style="font-weight:400;color:#aaa;font-size:12px"></span></div>
+        <div style="background:#f9fbe7;border-radius:10px;padding:12px;margin-bottom:12px;border:1px solid #e8f5e9">
+          <div style="font-size:12px;font-weight:700;color:#2d8c3e;margin-bottom:10px">➕ Novo Curso</div>
+          <div class="form-group"><label class="form-label">NOME *</label><input class="form-input" id="cur-nome" placeholder="Nome do curso"/></div>
+          <div class="form-group"><label class="form-label">DESCRIÇÃO</label><textarea class="form-input" id="cur-desc" placeholder="Descrição..."></textarea></div>
+          <div class="form-group"><label class="form-label">INSTITUIÇÃO</label><input class="form-input" id="cur-inst" placeholder="Escola ou instituição"/></div>
+          <div class="form-group"><label class="form-label">CIDADE/MODALIDADE</label><input class="form-input" id="cur-cidade" placeholder="Ex: Sobral — CE / Online"/></div>
+          <div class="form-group"><label class="form-label">PREÇO</label><input class="form-input" id="cur-preco" placeholder="Ex: Gratuito / R$ 350,00"/></div>
+          <div class="form-group"><label class="form-label">SITE</label><input class="form-input" id="cur-site" placeholder="https://..."/></div>
+          <div class="form-group"><label class="form-label">WHATSAPP</label><input class="form-input" id="cur-wpp" placeholder="(88) 99999-9999" type="tel"/></div>
+          <div class="form-group"><label class="form-label">IMAGEM (link)</label><input class="form-input" id="cur-img" placeholder="https://..."/></div>
+          <button onclick="APP.salvarCurso()" class="btn-submit" style="margin-top:10px">📚 PUBLICAR CURSO</button>
+          <div id="cur-ok" style="display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px;color:#166534;font-size:13px;font-weight:700;text-align:center;margin-top:8px">✅ Curso publicado!</div>
+        </div>
+        <div id="adm-lista-cur"><div class="loading">Carregando...</div></div>
+      </div>
+      <div class="admin-card">
+        <div class="admin-card-t">🚛 Me Contrata <span id="adm-tot-mot" style="font-weight:400;color:#aaa;font-size:12px"></span></div>
+        <div id="adm-lista-mot"><div class="loading">Carregando...</div></div>
+      </div>
+    </div>
+  </div>
+</div>
